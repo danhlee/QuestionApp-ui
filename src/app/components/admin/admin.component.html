@@ -1,0 +1,30 @@
+<h1>List Of Users</h1>
+
+<div>
+  <table border="solid">
+    <tr>
+      <th>id</th>
+      <th>username</th>
+      <th>password</th>
+      <th>first name</th>
+      <th>last name</th>
+      <th>email</th>
+      <th>creation date</th>
+    </tr>
+    <tr *ngFor="let user of users">
+      <td>
+        <!-- routerLink for dynamic routes = array of path segments (segments are concatenated) -->
+        <!-- /admin/view/:id gets specific user -->
+        <a [routerLink]="['/admin/view', user.id]">{{user.id}}</a>
+      </td>
+      <td>{{user.username}}</td>
+      <td>{{user.password}}</td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.creationDate}}</td>
+    </tr>
+  </table>
+
+</div>
+
