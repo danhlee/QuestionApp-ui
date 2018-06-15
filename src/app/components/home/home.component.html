@@ -15,7 +15,7 @@
         <div class="card-body">
 
           <!-- Form -->
-          <form [formGroup]="userForm" (ngSubmit)="loginUser()">
+          <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
             <div *ngIf="validMessage != ''">
               <h5 class="has-info msg-error">{{validMessage}}</h5>
             </div>
@@ -27,7 +27,7 @@
               <label>password</label>
               <input type="password" class="form-control" formControlName="password" placeholder="Password" required/>
             </div>     
-            <button type="submit" class="btn btn-success" >Submit</button>
+            <button type="submit" class="btn btn-success">Submit</button>
             <hr>
           </form>
           

@@ -9,6 +9,8 @@ import { QuestionAppService } from './services/question-app.service';
 import { AdminComponent } from './components/admin/admin.component';
 import { HomeComponent } from './components/home/home.component';
 import { ViewUserComponent } from './components/view-user/view-user.component';
+import { LoginService } from './services/login.service';
+import { AccountComponent } from './components/account/account.component';
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import { ViewUserComponent } from './components/view-user/view-user.component';
     AppComponent,
     AdminComponent,
     HomeComponent,
-    ViewUserComponent
+    ViewUserComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,10 @@ import { ViewUserComponent } from './components/view-user/view-user.component';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [QuestionAppService],
+  providers: [
+    QuestionAppService,
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
