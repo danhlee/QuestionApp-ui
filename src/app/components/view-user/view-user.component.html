@@ -1,11 +1,12 @@
-<div><h3 class="heading">Details about user {{user.id}}</h3></div>
+
 
 <div class="container">
-  <div class="row">
-      <a class="btn btn=primary" routerLink="/admin">Back to Admin User List</a>
-  </div>
+  <div class="card">
+    
+    <div class="card-header">
+      <h3 class="text-center">Details about user {{user.id}}</h3>
+    </div>
 
-  <div class="row">
     <table class="table table-striped table-dark">
       <thead>
         <tr>
@@ -30,5 +31,13 @@
         </tr>
       </tbody>
     </table>
+
+
+
   </div>
+  <div>
+      <button class="btn btn-primary" routerLink="/admin">Back to Admin User List</button>
+  </div>
+
+
 </div>

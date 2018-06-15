@@ -1,39 +1,44 @@
 <div class="container">
-  <div>
-    <h3 class="heading">List Of All Users</h3>
+  <div class="card">
+    <div class="card-header">
+      <h3 class="text-center">List Of All Users</h3>
+    </div>
+
+    <div>
+      
+      <table class="table table-striped">
+        <thead class="thead-light">
+          <tr>
+            <th>id</th>
+            <th>username</th>
+        <!-- <th>password</th>
+            <th>first name</th>
+            <th>last name</th>
+            <th>email</th> -->
+            <th>creation date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>
+              <!-- routerLink for dynamic routes = array of path segments (segments are concatenated) -->
+              <!-- /admin/view/:id gets specific user -->
+              <a [routerLink]="['/admin/view', user.id]">{{user.id}}</a>
+            </td>
+            <td>{{user.username}}</td>
+        <!-- <td>{{user.password}}</td> 
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.email}}</td> -->
+            <td>{{user.creationDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div>
-    
-    <table class="table table-striped">
-      <thead class="thead-light">
-        <tr>
-          <th>id</th>
-          <th>username</th>
-      <!-- <th>password</th>
-          <th>first name</th>
-          <th>last name</th>
-          <th>email</th> -->
-          <th>creation date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users">
-          <td>
-            <!-- routerLink for dynamic routes = array of path segments (segments are concatenated) -->
-            <!-- /admin/view/:id gets specific user -->
-            <a [routerLink]="['/admin/view', user.id]">{{user.id}}</a>
-          </td>
-          <td>{{user.username}}</td>
-      <!-- <td>{{user.password}}</td> 
-          <td>{{user.firstName}}</td>
-          <td>{{user.lastName}}</td>
-          <td>{{user.email}}</td> -->
-          <td>{{user.creationDate}}</td>
-        </tr>
-      </tbody>
-    </table>
+      <h5 class="msg-error">Click an ID number for details about a user...</h5>
   </div>
 
-  <div><h5 style="text-align: center">Click an ID number for details about a user...</h5></div>
 </div>
