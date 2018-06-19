@@ -11,7 +11,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class LoginService {
-  public user;
+  public loggedInUser;
+  public loggedIn = false;
 
   constructor(private http: HttpClient) { }
 

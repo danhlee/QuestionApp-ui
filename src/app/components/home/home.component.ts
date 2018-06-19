@@ -15,10 +15,12 @@ export class HomeComponent implements OnInit {
   loginForm: FormGroup;
   userForm: FormGroup;
   validMessage: String = '';
-  public potentialUser;
+  showingLogin = true;
+  potentialUser;
+  loggedIn = false;
 
-
-  constructor(private questionAppService: QuestionAppService, private loginService: LoginService, private router: Router) { }
+  constructor(private questionAppService: QuestionAppService, private loginService: LoginService, private router: Router) {
+  }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -41,46 +43,67 @@ export class HomeComponent implements OnInit {
       // this.validMessage = 'Form fields are valid! Please wait for authentication...';
       // pass in value of form (JSON user object) to the createUser(user: User) method in questionAppService.service
       // angular will return an Observable that we can subscribe to even if Controller method returns void
+
       this.loginService.authenticateUser(this.loginForm.value).subscribe(
         data => {
           this.potentialUser = data;
-          this.loginService.user = data;
+          this.loginService.loggedInUser = data;
           this.loginForm.reset();
-          return true;
+          this.goToAccount();
+          // return true;
         },
         error => {
           return Observable.throw(error);
         }
       );
-
-      if (this.potentialUser == null) {
-        this.validMessage = 'This account does not exist!';
-        this.loginForm.reset();
-      } else {
-        alert(this.potentialUser.firstName);
-        this.router.navigate(['/account']);
-      }
     } else {
       this.validMessage = 'Please complete the login fields before submitting!';
     }
   }
 
-  submitNewUser() {
+  registerNewUser() {
     if (this.userForm.valid) {
       this.validMessage = 'You have successfully created a new user account!';
       // pass in value of form (JSON user object) to the createUser(user: User) method in questionAppService.service
       // angular will return an Observable that we can subscribe to even if Controller method returns void
       this.questionAppService.createUser(this.userForm.value).subscribe(
         data => {
+          this.potentialUser = data;
+          this.loginService.loggedInUser = data;
           this.userForm.reset();
-          return true;
+          this.goToAccount();
+          // return true;
         },
         error => {
           return Observable.throw(error);
         }
       );
+      this.goToAccount();
+
     } else {
       this.validMessage = 'Please complete the form before submitting!';
     }
+  }
+
+  loginSignupSwap() {
+    this.showingLogin = !this.showingLogin;
+  }
+
+  goToAccount(): void {
+    if (!this.potentialUser) {
+      this.validMessage = 'This account does not exist!';
+      this.loginForm.reset();
+    } else {
+      this.loginService.loggedIn = true;
+      this.loggedIn = true;
+      this.router.navigate(['/account']);
+    }
+  }
+
+  logoutUser() {
+    this.loginService.loggedIn = false;
+    this.loggedIn = false;
+    this.loginService.loggedInUser = null;
+    this.potentialUser = null;
   }
 }

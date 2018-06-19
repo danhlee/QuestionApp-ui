@@ -2,50 +2,50 @@
 <div class="container">
 
     <!-- Login Box -->
-    <div id="login-box">
-      <!-- Main Card -->
-      <div class="card">
+  <div id="login-box" *ngIf='showingLogin && !loggedIn'>
+    <!-- Main Card -->
+    <div class="card">
 
-        <!-- Card Heading -->
-        <div class="card-header bg-primary">
-          <h3 class="text-center">User Login</h3>
-        </div>
+      <!-- Card Heading -->
+      <div class="card-header bg-primary">
+        <h3 class="text-center">User Login</h3>
+      </div>
 
-        <!-- Card Body -->
-        <div class="card-body">
+      <!-- Card Body -->
+      <div class="card-body">
 
-          <!-- Form -->
-          <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
-            <div *ngIf="validMessage != ''">
-              <h5 class="has-info msg-error">{{validMessage}}</h5>
-            </div>
-            <div class="form-group">
-                <label>email</label>
-                <input type="email" class="form-control" formControlName="email" placeholder="email@example.com" required autofocus/>
-            </div>
-            <div class="form-group">
-              <label>password</label>
-              <input type="password" class="form-control" formControlName="password" placeholder="Password" required/>
-            </div>     
-            <button type="submit" class="btn btn-success">Submit</button>
-            <hr>
-          </form>
-          
-          <!-- Sign up for new account -->
-          <div>
-            Don't have an account?
-            <button class="btn btn-info login-signup-swap-btn" onclick="loginSignupSwap()">
-                Sign Up Here
-            </button>
+        <!-- Form -->
+        <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+          <div *ngIf="validMessage != ''">
+            <h5 class="has-info msg-error">{{validMessage}}</h5>
           </div>
-
+          <div class="form-group">
+              <label>email</label>
+              <input type="email" class="form-control" formControlName="email" placeholder="email@example.com" required autofocus/>
+          </div>
+          <div class="form-group">
+            <label>password</label>
+            <input type="password" class="form-control" formControlName="password" placeholder="Password" required/>
+          </div>     
+          <button type="submit" class="btn btn-success">Login</button>
+          <hr>
+        </form>
+        
+        <!-- Sign up for new account -->
+        <div>
+          Don't have an account?
+          <button class="btn btn-info login-signup-swap-btn" (click)="loginSignupSwap()">
+              Sign Up Here
+          </button>
         </div>
+
       </div>
     </div>
+  </div>
 
 
   <!-- Signup Box -->
-  <div id="signup-box" style="display: none">
+  <div id="signup-box" *ngIf='!showingLogin && !loggedIn'>
     <!-- Main Card -->
     <div class="card">
       <!-- Card Heading -->
@@ -54,9 +54,9 @@
       </div>
       <!-- Card Body -->
       <div class="card-body">
-        <form [formGroup]="userForm" (ngSubmit)="submitNewUser()">
+        <form [formGroup]="userForm" (ngSubmit)="registerNewUser()">
           <div *ngIf="validMessage != ''">
-            <h4 class="has-info">{{validMessage}}</h4>
+            <h4 class="has-info msg-error">{{validMessage}}</h4>
           </div>
           <div class="form-group">
             <label>username</label>
@@ -79,14 +79,14 @@
             <input type="email" class="form-control" formControlName="email" placeholder="email@example.com" required/>
           </div>
       
-          <button type="submit" class="btn btn-success" >Submit</button>
+          <button type="submit" class="btn btn-success" >Register</button>
         </form>
 
         <hr>
         <!-- Sign up for new account -->
         <div>
           Already have an account?
-          <button class="btn btn-primary login-signup-swap-btn" onclick="loginSignupSwap()">
+          <button class="btn btn-primary login-signup-swap-btn" (click)="loginSignupSwap()">
               Login Here
           </button>
         </div>
@@ -94,6 +94,16 @@
       </div>
     </div>
   </div>
+
+  <div id="logout-box" *ngIf='loggedIn'>
+    <div>
+      <h1>Welcome {{potentialUser.name}}! You are currently logged in as {{potentialUser.email}}!</h1>
+    </div>
+    <button class="btn btn-danger" (click)="logoutUser()">
+      Logout
+    </button>
+  </div>
+
 
 </div>
 

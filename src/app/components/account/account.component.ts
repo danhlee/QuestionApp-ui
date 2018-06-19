@@ -12,7 +12,7 @@ export class AccountComponent implements OnInit {
   constructor(private loginService: LoginService) { }
 
   ngOnInit() {
-    this.user = this.loginService.user;
+    this.user = this.loginService.loggedInUser;
   }
 
 }

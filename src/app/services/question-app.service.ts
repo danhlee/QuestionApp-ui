@@ -27,4 +27,8 @@ export class QuestionAppService {
     const body = JSON.stringify(user);
     return this.http.post('/server/QuestionApp/user', body, httpOptions);
   }
+  authenticateUser(user) {
+    const body = JSON.stringify(user);
+    return this.http.post('/server/QuestionApp/authenticateUser', body, httpOptions);
+  }
 }
