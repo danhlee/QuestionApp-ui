@@ -4,6 +4,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { HomeComponent } from './components/home/home.component';
 import { ViewUserComponent } from './components/view-user/view-user.component';
 import { AccountComponent } from './components/account/account.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,12 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: HomeComponent
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 

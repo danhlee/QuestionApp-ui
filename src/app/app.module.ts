@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ViewUserComponent } from './components/view-user/view-user.component';
 import { LoginService } from './services/login.service';
 import { AccountComponent } from './components/account/account.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AccountComponent } from './components/account/account.component';
     AdminComponent,
     HomeComponent,
     ViewUserComponent,
-    AccountComponent
+    AccountComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
